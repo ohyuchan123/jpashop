@@ -10,13 +10,10 @@ import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
-    @SpringBootTest
-    @Transactional
-    public class MemberServiceTest {
-
-    }
         @Autowired
         MemberService memberService;
         @Autowired
@@ -24,12 +21,12 @@ class MemberServiceTest {
 
         @Test
         public void 회원가입() throws Exception {
-            //Given
+            //Given : 이렇게 주어졌을때
             Member_DM member_dm = new Member_DM();
             member_dm.setName("kim");
-            //When
+            //When : 이 조건을 실행하면
             Long saveId = memberService.join(member_dm);
-            //Then
+            //Then : 이러한 결과가 나와야 한다.
             assertEquals(member_dm, memberRepository.findOne(saveId));
         }
 
